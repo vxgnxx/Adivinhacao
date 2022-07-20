@@ -4,12 +4,14 @@ const jogo = document.querySelector('.jogo')
 const input = document.querySelector('#chute');
 const inicioPlay = document.querySelector('.inicio__play');
 const jogoPlay = document.querySelector('.jogo__play');
+const back = document.querySelector('.jogo__back')
+const reload = document.querySelector('.jogo__reload')
 
 
-let numeroSecreto = Math.floor(Math.random() * 100); // Gera número rândomico
-console.log(numeroSecreto);
+let numeroSecreto;
 let chute;
 let pontuacao;
+let pontos = 1000;
 
 let numeroTentativas = 15;
 let tentativa = 2;
@@ -19,15 +21,14 @@ let txtDica = document.querySelector('.jogo__texto--dica')
 
 let dificuldade;
 
+// Muda da tela de inicio para a tela de jogo
 inicioPlay.addEventListener('click', () => {
-    escolheDificuldade();
+    escolheDificuldade(); // Seleciona a dificuldade do jogo
+    numeroSecreto = Math.floor(Math.random() * 100); // Gera o número aleatório
+    console.log(numeroSecreto);
     inicio.style.display = 'none';
     jogo.style.display = 'flex';
 })
-
-
-
-
 
 // Roda o jogo
 jogoPlay.addEventListener('click', () => {
@@ -51,6 +52,22 @@ jogoPlay.addEventListener('click', () => {
     pontuacao = calculaPontos(); // Faz o calculo da pontuação
 }) 
 
+back.addEventListener('click', () => {
+    inicio.style.display = 'flex';
+    jogo.style.display = 'none';
+})
+
+reload.addEventListener('click', () => {
+    numeroSecreto = Math.floor(Math.random() * 100); // Gera o número aleatório
+    tentativa = 2;
+    pontos = 1000;
+    txtTentativa.innerHTML = 'Faça um chute!'
+    txtDica.innerHTML = '--------------';
+    input.disabled = false;
+    input.value = '';
+    jogoPlay.disabled = false;
+
+})
 
 
 
@@ -113,9 +130,9 @@ function verificaChute() {
         txtTentativa.innerHTML = 'Você acertou! Jogue de novo'
         txtDica.innerHTML = 'Pontuação: ' + pontuacao;
     } else if (chute > numeroSecreto) {
-        txtDica.innerHTML = 'O número é menor doque o seu chute'
+        txtDica.innerHTML = 'O número é menor do que o seu chute'
     } else {
-        txtDica.innerHTML = 'O número é maior doque o seu chute'
+        txtDica.innerHTML = 'O número é maior do que o seu chute'
     }
 }
 
@@ -128,7 +145,6 @@ function pararJogo() {
 
 // Calculo da pontuação
 function calculaPontos() {
-    let pontos = 1000;
     let pontosPerdidos = Math.abs(chute - numeroSecreto) / 2
     pontos -= pontosPerdidos
     return pontos
