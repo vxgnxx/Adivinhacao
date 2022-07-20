@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adivinhação</title>
+    <link rel="shortcut icon" href="https://cdn-icons-png.flaticon.com/512/25/25333.png" type="image/x-icon">
+    <link rel="stylesheet" href="assets/CSS/style.css">
+    <link rel="stylesheet" href="assets/CSS/inicio.css">
+    <link rel="stylesheet" href="assets/CSS/jogo.css">
+</head>
+<body>
+    <main >
+        <h1 class="titulo">~ Jogo da Adivinhação ~</h1>
+        <div class="inicio"> 
+            <fieldset class="seletor">
+                <legend class="seletor__titulo">Selecione a dificuldade</legend>
+                <div class="seletor__opção">
+                    <label for="fácil">Fácil</label>
+                    <input class="seletor__input" type="radio" name="dificuldade" value="fácil" id="fácil">
+                </div>
+                <div class="seletor__opção">
+                    <label for="normal">Normal</label>
+                    <input class="seletor__input" type="radio" name="dificuldade" value="normal" id="normal" checked>
+                </div>
+                <div class="seletor__opção">
+                    <label for="dificil">Difícil</label>
+                    <input class="seletor__input" type="radio" name="dificuldade" value="difícil" id="dificil">
+                </div>
+            </fieldset>
+            <button class="inicio__play">-- Jogar --</button>
+        </div>
+        <div class="jogo">
+            <div>
+                <p class="jogo__texto--tentativa">Faça um chute!</p>
+                <p class="jogo__texto--dica">--------------</p>
+            </div>
+            <form class="jogo__chute"autocomplete="off" action="" onsubmit="return false">
+                <input type="text" name="chute" id="chute" placeholder="* Digite o seu chute *" pattern="([0-9]?)([0-9])"  autocomplete="off" required>
+                <button class="jogo__play" type="submit"> -- Chutar --</button>
+            </form>
+            <div class="jogo__menu">
+                <button class="jogo__btn">&#8634</button>
+                <button class="jogo__btn"><-</button>
+            </div>
+        </div>
+    </main>
+
+    <script src="assets/JS/main.js"></script>
+</body>
+</html>

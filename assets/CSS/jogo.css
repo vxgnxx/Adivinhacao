@@ -1,0 +1,75 @@
+.jogo {
+    height: 75vh;
+    width: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    text-align: center;
+}
+
+.jogo__chute {
+    height: 20vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+#chute {
+    width: 75%;
+    height: 3rem;
+    text-align: center;
+    background: #ecf0f3;
+    border: 2px #252627 solid;
+    border-radius: 15px;
+    transition: .5s ease-in-out;
+    outline: none;
+}
+
+#chute:focus {
+    border: 2px #3D52D5 solid;
+}
+
+.jogo__play{
+    width: 37.5%;
+    height: 3rem;
+    font-size: 1rem;
+    font-weight: 400;
+    color: #ecf0f3;
+    background-color: #252627;
+    border: 2px #252627 solid;
+    border-radius: 15px;
+    transition: .5s ease-in-out;
+    cursor: pointer;
+}
+
+.jogo__play:hover {
+    border: 2px #3D52D5 solid;
+    background-color: #3D52D5;
+}
+
+
+.jogo__menu {
+    width: 50%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.jogo__btn {
+    background-color: #252627;
+    outline: none;
+    border: none;
+    border-radius: 10px;
+    width: 2rem;
+    height: 2rem;
+    color: #ecf0f3;
+    transition: .5s ease-in-out;
+    margin-bottom: 25px;
+}
+
+.jogo__btn:hover {
+    background-color: #3D52D5;
+    cursor: pointer;
+}
