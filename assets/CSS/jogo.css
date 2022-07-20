@@ -18,7 +18,7 @@
 }
 
 #chute {
-    width: 75%;
+    width: 100%;
     height: 3rem;
     text-align: center;
     background: #ecf0f3;
@@ -33,7 +33,7 @@
 }
 
 .jogo__play{
-    width: 37.5%;
+    width: 75%;
     height: 3rem;
     font-size: 1rem;
     font-weight: 400;

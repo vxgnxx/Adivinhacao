@@ -1,3 +1,6 @@
+const inicio = document.querySelector('.inicio')
+const jogo = document.querySelector('.jogo')
+
 const input = document.querySelector('#chute');
 const inicioPlay = document.querySelector('.inicio__play');
 const jogoPlay = document.querySelector('.jogo__play');
@@ -18,6 +21,8 @@ let dificuldade;
 
 inicioPlay.addEventListener('click', () => {
     escolheDificuldade();
+    inicio.style.display = 'none';
+    jogo.style.display = 'flex';
 })
 
 
@@ -130,6 +135,7 @@ function calculaPontos() {
 
 }
 
+// Define a dificuldade
 function escolheDificuldade() {
     dificuldade = document.querySelectorAll('[name="dificuldade"]')
 
