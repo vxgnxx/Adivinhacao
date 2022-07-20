@@ -50,6 +50,11 @@
     background-color: #3D52D5;
 }
 
+.jogo__play:disabled:hover {
+    background-color: #252627;
+    border: 2px #252627 solid;
+}
+
 .jogo__menu {
     width: 50%;
     display: flex;

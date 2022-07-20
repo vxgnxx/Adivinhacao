@@ -1,5 +1,3 @@
-const inicio = document.querySelector('.inicio');
-const jogo = document.querySelector('.jogo')
 const input = document.querySelector('#chute');
 const inicioPlay = document.querySelector('.inicio__play');
 const jogoPlay = document.querySelector('.jogo__play');
@@ -11,7 +9,7 @@ let chute;
 let numeroTentativas = 5;
 let tentativa = 2;
 let txtTentativa = document.querySelector('.jogo__texto--tentativa');
-let txtDica = document.querySelector
+let txtDica = document.querySelector('.jogo__texto--dica')
 
 // Roda o jogo
 jogoPlay.addEventListener('click', () => {
@@ -25,7 +23,8 @@ jogoPlay.addEventListener('click', () => {
     
     if(tentativa > numeroTentativas) {
         pararJogo();
-        console.log('FUNFA')
+        txtTentativa.innerHTML = 'O número secreto era ' + numeroSecreto;
+        txtDica.innerHTML = 'Tente de novo!';
     }
     
     verificaChute(); // Compara o chute ao número secreto
@@ -95,19 +94,25 @@ function validaChute() {
 // Compara o chute com o número secreto
 function verificaChute() {
     if(chute == numeroSecreto) {
-        console.log('acertou')
+        let pontuacao = calculaPontos();
+        console.log('acertou');
+        pararJogo();
+        txtTentativa.innerHTML = 'Você acertou! Jogue de novo'
+        txtDica.innerHTML = 'Pontuação: ' + pontuacao;
     } else if (chute > numeroSecreto) {
-        console.log('maior')
+        txtDica.innerHTML = 'O número é menor doque o seu chute'
     } else {
-        console.log('menor')
+        txtDica.innerHTML = 'O número é maior doque o seu chute'
     }
 }
 
-//
+// Para o jogo
 function pararJogo() {
     input.disabled = true;
-    input.value = '* Fim de jogo *'
+    input.value = '* Fim de jogo *';
     jogoPlay.disabled = true;
 }
+
+function 
 
 
