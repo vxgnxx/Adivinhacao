@@ -17,13 +17,13 @@ jogoPlay.addEventListener('click', () => {
     let validador = validaChute();
     if(validador === true) {
         chute = input.value
+        txtTentativa.innerHTML = 'Tentativa ' + tentativa + ' de 5';
+        tentativa++
     }
 
-    txtTentativa.innerHTML = 'Tentativa ' + tentativa;
     console.log(chute)
     verificaChute();
     console.log(tentativa)
-    tentativa++
 }) 
 
 
