@@ -1,29 +1,35 @@
 const inicio = document.querySelector('.inicio');
 const jogo = document.querySelector('.jogo')
-const inicioPlay = document.querySelector('.inicio__play');
 const input = document.querySelector('#chute');
+const inicioPlay = document.querySelector('.inicio__play');
 const jogoPlay = document.querySelector('.jogo__play');
 
 
 let numeroSecreto = Math.floor(Math.random() * 100); // Gera número rândomico
 console.log(numeroSecreto);
 let chute;
-let tentativa = 1;
+let numeroTentativas = 5;
+let tentativa = 2;
 let txtTentativa = document.querySelector('.jogo__texto--tentativa');
 let txtDica = document.querySelector
 
-// Valida o chute e atribui ele a uma variavel caso ele seja valido
+// Roda o jogo
 jogoPlay.addEventListener('click', () => {
+    
+    // Valida o chute e atribui ele a uma váriavel, enquanto imprime na tela qual o número da tentativa
     let validador = validaChute();
     if(validador === true) {
         chute = input.value
-        txtTentativa.innerHTML = 'Tentativa ' + tentativa + ' de 5';
-        tentativa++
+        txtTentativa.innerHTML = 'Tentativa ' + tentativa + ' de ' + numeroTentativas;
     }
-
-    console.log(chute)
-    verificaChute();
-    console.log(tentativa)
+    
+    if(tentativa > numeroTentativas) {
+        pararJogo();
+        console.log('FUNFA')
+    }
+    
+    verificaChute(); // Compara o chute ao número secreto
+    tentativa++
 }) 
 
 
@@ -95,6 +101,13 @@ function verificaChute() {
     } else {
         console.log('menor')
     }
+}
+
+//
+function pararJogo() {
+    input.disabled = true;
+    input.value = '* Fim de jogo *'
+    jogoPlay.disabled = true;
 }
 
 
