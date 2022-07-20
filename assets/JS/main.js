@@ -6,10 +6,23 @@ const jogoPlay = document.querySelector('.jogo__play');
 let numeroSecreto = Math.floor(Math.random() * 100); // Gera número rândomico
 console.log(numeroSecreto);
 let chute;
-let numeroTentativas = 5;
+let pontuacao;
+
+let numeroTentativas = 15;
 let tentativa = 2;
+
 let txtTentativa = document.querySelector('.jogo__texto--tentativa');
 let txtDica = document.querySelector('.jogo__texto--dica')
+
+let dificuldade;
+
+inicioPlay.addEventListener('click', () => {
+    escolheDificuldade();
+})
+
+
+
+
 
 // Roda o jogo
 jogoPlay.addEventListener('click', () => {
@@ -21,6 +34,7 @@ jogoPlay.addEventListener('click', () => {
         txtTentativa.innerHTML = 'Tentativa ' + tentativa + ' de ' + numeroTentativas;
     }
     
+    // Restringe o número de tentativas
     if(tentativa > numeroTentativas) {
         pararJogo();
         txtTentativa.innerHTML = 'O número secreto era ' + numeroSecreto;
@@ -29,6 +43,7 @@ jogoPlay.addEventListener('click', () => {
     
     verificaChute(); // Compara o chute ao número secreto
     tentativa++
+    pontuacao = calculaPontos(); // Faz o calculo da pontuação
 }) 
 
 
@@ -51,12 +66,6 @@ jogoPlay.addEventListener('click', () => {
 
 
 
-/*inicioPlay.addEventListener('click', () => {
-    inicio.style.display = "none"; 
-    jogo.style.display = "flex";
-    console.log(input.value)
-    }
-)*/
 
 
 
@@ -94,7 +103,6 @@ function validaChute() {
 // Compara o chute com o número secreto
 function verificaChute() {
     if(chute == numeroSecreto) {
-        let pontuacao = calculaPontos();
         console.log('acertou');
         pararJogo();
         txtTentativa.innerHTML = 'Você acertou! Jogue de novo'
@@ -113,6 +121,25 @@ function pararJogo() {
     jogoPlay.disabled = true;
 }
 
-function 
+// Calculo da pontuação
+function calculaPontos() {
+    let pontos = 1000;
+    let pontosPerdidos = Math.abs(chute - numeroSecreto) / 2
+    pontos -= pontosPerdidos
+    return pontos
 
+}
 
+function escolheDificuldade() {
+    dificuldade = document.querySelectorAll('[name="dificuldade"]')
+
+    for(let i = 0; i < dificuldade.length; i++){
+        if(dificuldade[i].checked && dificuldade[i].value == 1) {
+            numeroTentativas = 20;
+        } else if(dificuldade[i].checked && dificuldade[i].value == 2) {
+            numeroTentativas = 15;
+        } else if(dificuldade[i].checked && dificuldade[i].value == 3) {
+            numeroTentativas = 10;
+        }
+    }
+}
