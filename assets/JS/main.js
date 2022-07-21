@@ -20,6 +20,7 @@ let txtTentativa = document.querySelector('.jogo__texto--tentativa');
 let txtDica = document.querySelector('.jogo__texto--dica')
 
 let dificuldade;
+let validador
 
 // Muda da tela de inicio para a tela de jogo
 inicioPlay.addEventListener('click', () => {
@@ -34,11 +35,13 @@ inicioPlay.addEventListener('click', () => {
 jogoPlay.addEventListener('click', () => {
     
     // Valida o chute e atribui ele a uma váriavel, enquanto imprime na tela qual o número da tentativa
-    let validador = validaChute();
+    validador = validaChute();
     if(validador === true) {
         chute = input.value
         txtTentativa.innerHTML = 'Tentativa ' + tentativa + ' de ' + numeroTentativas;
     }
+    
+    verificaChute(); // Compara o chute ao número secreto
     
     // Restringe o número de tentativas
     if(tentativa > numeroTentativas) {
@@ -47,7 +50,6 @@ jogoPlay.addEventListener('click', () => {
         txtDica.innerHTML = 'Tente de novo!';
     }
     
-    verificaChute(); // Compara o chute ao número secreto
     tentativa++
     pontuacao = calculaPontos(); // Faz o calculo da pontuação
 }) 
@@ -66,7 +68,7 @@ reload.addEventListener('click', () => {
     input.disabled = false;
     input.value = '';
     jogoPlay.disabled = false;
-
+    
 })
 
 
@@ -102,19 +104,19 @@ reload.addEventListener('click', () => {
 // Checa se o chute é valido
 function validaChute() {
     input.addEventListener('invalid', function (event) {
-    if (event.target.validity.valueMissing) {
-        event.target.setCustomValidity('Chute algum número.');
-    } else if (event.target.validity.patternMismatch) {
-        event.target.setCustomValidity('Por favor insira apenas números positivos, de 0 a 99.');
-    } else {
-    }
+        if (event.target.validity.valueMissing) {
+            event.target.setCustomValidity('Chute algum número.');
+        } else if (event.target.validity.patternMismatch) {
+            event.target.setCustomValidity('Por favor insira apenas números positivos, de 0 a 99.');
+        } else {
+        }
     })
-
+    
     
     input.addEventListener('change', function (event) {
         event.target.setCustomValidity('');
     })
-
+    
     if (input.validity.valueMissing || input.validity.patternMismatch) {
         return false
     } else {
@@ -133,6 +135,10 @@ function verificaChute() {
         txtDica.innerHTML = 'O número é menor do que o seu chute'
     } else {
         txtDica.innerHTML = 'O número é maior do que o seu chute'
+    }
+    
+    if (input.value == '' || validador == false) {
+        txtDica.innerHTML = '--------------'
     }
 }
 
